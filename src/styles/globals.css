@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-white/[0.08];
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  html {
+    background: #05070d;
+  }
+
+  body {
+    @apply text-white antialiased;
+    background: #05070d;
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
+
+  /* Better autofill styling on dark */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #ffffff;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(52,211,153,0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  /* The core glass surface — used everywhere */
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.08];
+    box-shadow:
+      inset 0 1px 0 0 rgba(255,255,255,0.08),
+      0 8px 32px -8px rgba(0,0,0,0.4);
+  }
+
+  /* A stronger variant for interactive/raised elements */
+  .glass-strong {
+    @apply bg-white/[0.06] backdrop-blur-2xl border border-white/[0.10];
+    box-shadow:
+      inset 0 1px 0 0 rgba(255,255,255,0.10),
+      0 12px 48px -12px rgba(0,0,0,0.5);
+  }
+
+  /* Text gradient — used on hero headlines */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.65) 100%);
+  }
+
+  /* Emerald text gradient for accents */
+  .text-gradient-emerald {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #6ee7b7 0%, #34d399 50%, #10b981 100%);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep scrolling */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
